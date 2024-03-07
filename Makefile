@@ -15,10 +15,26 @@ generate-.env.example:
 	@echo "Generated file .env.example"
 
 migrate-up: 
+	@read -p "UP : " level ; \
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up "$$level"
+
+migrate-up-all: 
 	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up
 
-migrate-down: 
+migrate-down-all: 
 	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations down
+
+migrate-down: 
+	@read -p "DOWN : " level ; \
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations down "$$level"
+
+migrate-goto: 
+	@read -p "goto : " level ; \
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations goto "$$level"
+
+migrate-force: 
+	@read -p "goto (force) : " level ; \
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations force "$$level"
 
 migrate-version:	
 	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations version
