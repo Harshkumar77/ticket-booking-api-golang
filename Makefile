@@ -10,29 +10,29 @@ generate-.env.example:
 
 migrate-new:
 	@read -p "Enter new migration name: " migration ; \
-	@migrate create -ext sql -dir migrations -seq "$$migration"
+	migrate create -ext sql -dir migrations -seq "$$migration"
 
 migrate-up: 
 	@read -p "UP : " level ; \
-	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up "$$level"
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up "$$level"
 
 migrate-up-all: 
-	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up
 
 migrate-down-all: 
-	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations down
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations down
 
 migrate-down: 
 	@read -p "DOWN : " level ; \
-	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations down "$$level"
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations down "$$level"
 
 migrate-goto: 
 	@read -p "goto : " level ; \
-	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations goto "$$level"
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations goto "$$level"
 
 migrate-force: 
 	@read -p "goto (force) : " level ; \
-	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations force "$$level"
+	migrate -database $(DB_URL_FOR_MIGRATE) -path migrations force "$$level"
 
 migrate-reset: 
 	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations drop && migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up
