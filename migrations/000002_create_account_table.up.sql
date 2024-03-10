@@ -9,7 +9,7 @@ create table if not exists account (
   city_id serial not null,
   on_boarded boolean default false not null,
   admin boolean default false not null,
-  passwd varchar(36) not null,
+  passwd varchar(70) not null,
   
   last_login timestamp NOT NULL default CURRENT_TIMESTAMP, 
   created_at timestamp NOT NULL default CURRENT_TIMESTAMP, 

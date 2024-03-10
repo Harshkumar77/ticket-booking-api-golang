@@ -21,9 +21,14 @@ create table if not exists transaction (
   event_id serial not null,
   seat_type_id serial not null,
   tickets_booked integer not null check(tickets_booked > 0),
+  account_id uuid not null,
   created_at timestamp NOT NULL default CURRENT_TIMESTAMP, 
   updated_at timestamp NOT NULL default CURRENT_TIMESTAMP,
 
+  constraint fk_account_id
+    foreign key(account_id)
+      references account(account_id)
+        on delete cascade,
   constraint fk_seat_type_id
     foreign key(seat_type_id)
       references seat_type(seat_type_id)
@@ -41,7 +46,7 @@ create table if not exists tag (
   updated_at timestamp NOT NULL default CURRENT_TIMESTAMP
 );
 
-create table if not exists user_tag_map (
+create table if not exists account_tag_map (
   account_id uuid not null,
   tag varchar(20) not null,
   created_at timestamp NOT NULL default CURRENT_TIMESTAMP, 

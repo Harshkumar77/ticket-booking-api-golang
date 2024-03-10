@@ -37,6 +37,9 @@ migrate-force:
 migrate-reset: 
 	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations drop && migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up
 
+migrate-reset-dev: 
+	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations drop -f && migrate -database $(DB_URL_FOR_MIGRATE) -path migrations up && psql $(DATABASE_URL) -t -f ./seed.sql
+
 migrate-version:	
 	@migrate -database $(DB_URL_FOR_MIGRATE) -path migrations version
 
