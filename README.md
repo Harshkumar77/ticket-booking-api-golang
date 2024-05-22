@@ -26,6 +26,7 @@ make migrate-up-all
 | 8.  | /book/:payment_id                                               | Payment confirmation + Ticket Download       |
 | 9.  | /settings                                                       | On boarding page loaded with user preference |
 | 10. | /history                                                        | History of payments + Download Ticket again  |
+|     | TODO                                                            |                                              |
 | 11. | /admin/events                                                   | List of events (newest first )               |
 | 12. | /admin/:event_slug                                              | Form to update, create, delete event         |
 | 13. | /admin/sales                                                    | some sales data                              |
@@ -40,13 +41,20 @@ make migrate-up-all
 
 2. Exploring
   - GET /api/cities?q=<query>
-  - GET /api/events?tags=[],filter-price_low,price_high,type,date_start,date_end,sort=[nearest,price_low_to_high,price_high_to_low]
+  - GET /api/events?tags=[],price_low,price_high,type,date_start,date_end,sort=nearest|price_low_to_high|price_high_to_low
   - GET /api/event/:slug
-  - GET /api/explore
 
 3. Transaction
   - GET /api/history
-  - POST /api/book?event=<event_slug>,type=<ticket_type>,quantity=<quantity>
+  - POST /api/book
+    - Body :
+      ```
+        {
+          "event": "<event_slug>",
+          "type": "<ticket_type>",
+          "quantity": "<quantity>"
+        }
+      ```
   - GET /api/ticket/:transaction_id
 
 4. Profile
@@ -54,7 +62,7 @@ make migrate-up-all
   - POST /api/settings
   - DELETE /api/delete_account
 
-### Admin
+### TODO: Admin
 1. Operation
   - GET /api/admin/new 
   - POST /api/admin/:event_slug

@@ -1,0 +1,19 @@
+meta {
+  name: Book
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/book
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "event": "<event_slug>",
+    "type": "<ticket_type>",
+    "quantity": "<quantity>"
+  }
+}

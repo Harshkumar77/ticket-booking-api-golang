@@ -1,0 +1,21 @@
+meta {
+  name: Cities
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/cities
+  body: json
+  auth: none
+}
+
+query {
+  ~q: del
+}
+
+body:json {
+  {
+    ""
+  }
+}
